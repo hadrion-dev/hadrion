@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HADRION</title>
+  <link rel="stylesheet" href="./css/base.css">
+</head>
+<body>
+
+  <div id="app">
+
+    <aside id="sidebar">
+      <div class="sidebar-header">
+        <h1>HADRION</h1>
+        <button id="btn-sidebar-close" aria-label="Cerrar menú">◀</button>
+      </div>
+
+      <button id="btn-nuevo-chat" class="btn-primario">+ Nuevo chat</button>
+
+      <nav class="sidebar-nav">
+        <button class="sidebar-item" data-seccion="biblioteca">Biblioteca</button>
+        <button class="sidebar-item" data-seccion="imagenes" disabled>Imágenes</button>
+        <button class="sidebar-item" data-seccion="video" disabled>Video</button>
+      </nav>
+
+      <div class="sidebar-todos">
+        <div class="sidebar-titulo">Todos</div>
+        <div id="lista-chats"></div>
+      </div>
+
+      <div class="sidebar-footer">
+        <button id="btn-ajustes" aria-label="Ajustes">⚙</button>
+        <div id="avatar-usuario">H</div>
+      </div>
+    </aside>
+
+    <main id="main">
+
+      <div id="topbar">
+        <div class="topbar-left">
+          <button id="btn-sidebar-open" aria-label="Abrir menú">☰</button>
+          <button id="btn-modelo" aria-label="Modelo activo">≡ <span id="modelo-nombre">—</span></button>
+        </div>
+        <button id="btn-tts" aria-label="Leer en voz alta">🔇</button>
+      </div>
+
+      <div id="msgs">
+        <div id="msgs-inner">
+          <div id="welcome">
+            <div class="welcome-big">Hola 👋</div>
+            <div class="welcome-sub">¿Qué necesitas?</div>
+          </div>
+        </div>
+      </div>
+
+      <div id="composer">
+        <div id="composer-inner">
+
+          <div id="preview-adjunto" hidden>
+            <img id="preview-img" alt="">
+            <span id="preview-nombre"></span>
+            <button id="btn-preview-quitar" aria-label="Quitar imagen">×</button>
+          </div>
+
+          <div id="fila-input">
+            <button id="btn-adjuntar" aria-label="Adjuntar imagen">+</button>
+            <textarea id="input-mensaje" rows="1" placeholder="Enviar mensaje..."></textarea>
+            <button id="btn-micro" aria-label="Dictar por voz">🎤</button>
+            <button id="btn-enviar" disabled>Enviar</button>
+          </div>
+
+        </div>
+      </div>
+
+    </main>
+
+  </div>
+
+  <input type="file" id="input-archivo" accept="image/*" hidden>
+
+  <!-- En el siguiente paso se añadirán los módulos JS aquí -->
+</body>
+</html>

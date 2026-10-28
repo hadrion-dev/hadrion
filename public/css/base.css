@@ -1,0 +1,112 @@
+/* ============================================================
+   HADRION — base.css
+   Reset, variables globales, estructura de layout.
+   Los estilos de cada componente viven en su propio CSS.
+   ============================================================ */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  /* Paleta */
+  --bg:           #0f0f12;
+  --bg-sidebar:   #0a0a0c;
+  --bg-burbuja:   #18181b;
+  --bg-hover:     #1f1f23;
+  --bg-activo:    #27272a;
+
+  --texto:        #e5e5e7;
+  --texto-suave:  #a1a1aa;
+  --texto-tenue:  #71717a;
+
+  --borde:        #27272a;
+  --borde-activo: #3f3f46;
+
+  --primario:     #2563eb;
+  --primario-hover: #3b82f6;
+  --rojo:         #dc2626;
+  --verde:        #22c55e;
+
+  /* Layout */
+  --sidebar-ancho: 260px;
+  --radio:         12px;
+  --radio-chico:   8px;
+
+  /* Tipografía */
+  --fuente: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --fuente-mono: ui-monospace, "SF Mono", Menlo, monospace;
+}
+
+html, body {
+  height: 100dvh;
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+body {
+  background: var(--bg);
+  color: var(--texto);
+  font-family: var(--fuente);
+  font-size: 15px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: inherit;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+textarea {
+  font: inherit;
+  resize: none;
+  outline: none;
+  border: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Layout principal: sidebar + main */
+#app {
+  display: flex;
+  height: 100dvh;
+  width: 100vw;
+}
+
+#sidebar {
+  width: var(--sidebar-ancho);
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-sidebar);
+  border-right: 1px solid var(--borde);
+  padding: 12px;
+  gap: 10px;
+  overflow: hidden;
+}
+
+#main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Estado colapsado */
+#sidebar.colapsado {
+  display: none;
+}

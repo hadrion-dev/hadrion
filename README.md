@@ -1,5 +1,7 @@
 # HADRION
 
+![HADRION chat interface](docs/screenshot.png)
+
 Sovereign local AI stack — chat interface for self-hosted LLMs.
 
 A self-contained, modular HTML/CSS/JS chat client designed to talk to a

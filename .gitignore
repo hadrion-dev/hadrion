@@ -148,6 +148,11 @@ vite.config.ts.timestamp-*
 # Turbo Repo
 .turbo
 
+# Excepción: permitir imágenes SOLO dentro de docs/
+!docs/
+!docs/*.png
+!docs/*.jpg
+
 # HADRION — archivos temporales que no van al repo
 *.png
 *.jpg

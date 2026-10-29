@@ -1,0 +1,63 @@
+/* ============================================================
+   HADRION — topbar.css
+   Barra superior del main: [☰ ≡ modelo] ← → [🔇]
+   Solo layout. Sin dropdown, sin funcionalidad.
+   ============================================================ */
+
+#topbar {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;   /* izquierda grupo, derecha bocina */
+  gap: 12px;
+  padding: 8px 14px;
+  border-bottom: 1px solid var(--borde);
+  background: var(--bg);
+}
+
+.topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+#btn-sidebar-open {
+  background: none;
+  border: 1px solid var(--borde);
+  color: var(--texto);
+  border-radius: 10px;
+  padding: 7px 12px;
+  font-size: 13px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all .15s;
+}
+#btn-sidebar-open:hover {
+  background: var(--bg-hover);
+  border-color: var(--borde-activo);
+}
+
+#btn-tts {
+  background: none;
+  border: 1px solid var(--borde);
+  color: var(--texto-suave);
+  border-radius: 10px;
+  padding: 7px 12px;
+  font-size: 14px;
+  line-height: 1;
+  transition: all .15s;
+}
+#btn-tts:hover {
+  color: var(--texto);
+  border-color: var(--borde-activo);
+  background: var(--bg-hover);
+}
+
+/* Estado activo de la bocina: verde suave cuando está encendida */
+#btn-tts.activo {
+  background: rgba(34, 197, 94, 0.12);
+  color: var(--verde);
+  border-color: var(--verde);
+}

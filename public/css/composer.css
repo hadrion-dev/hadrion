@@ -1,0 +1,159 @@
+/* ============================================================
+   HADRION — composer.css
+   Estilos del área de escritura: textarea grande, botones.
+   Nada del sidebar, topbar ni burbujas de chat.
+   ============================================================ */
+
+/* textarea grande y ancho, con estilo de caja */
+#input-mensaje {
+  flex: 1;
+  width: 100%;
+  min-height: 48px;
+  max-height: 220px;
+  padding: 12px 16px;
+  background: var(--bg-burbuja);
+  color: var(--texto);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  font-size: 14.5px;
+  line-height: 1.5;
+  transition: border-color .15s;
+}
+#input-mensaje:focus {
+  border-color: var(--borde-activo);
+}
+#input-mensaje::placeholder {
+  color: var(--texto-tenue);
+}
+
+/* botones cuadrados a los lados (adjuntar y micro) */
+#btn-adjuntar,
+#btn-micro {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  background: var(--bg-burbuja);
+  color: var(--texto-suave);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  font-size: 18px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all .15s;
+}
+#btn-adjuntar:hover:not(:disabled),
+#btn-micro:hover:not(:disabled) {
+  color: var(--texto);
+  border-color: var(--borde-activo);
+  background: var(--bg-hover);
+}
+
+/* botón Enviar naranja/azul grande */
+#btn-enviar {
+  flex-shrink: 0;
+  height: 48px;
+  padding: 0 22px;
+  background: var(--primario);
+  color: #ffffff;
+  border-radius: var(--radio);
+  font-size: 14.5px;
+  font-weight: 500;
+  transition: background .15s;
+}
+#btn-enviar:hover:not(:disabled) {
+  background: var(--primario-hover);
+}
+#btn-enviar:disabled {
+  background: var(--bg-burbuja);
+  color: var(--texto-tenue);
+}
+
+/* preview del adjunto (oculto por defecto, se muestra al elegir imagen) */
+#preview-adjunto {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  background: var(--bg-burbuja);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio-chico);
+  align-self: flex-start;
+}
+#preview-adjunto img {
+  width: 44px;
+  height: 44px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+#preview-nombre {
+  font-size: 12.5px;
+  color: var(--texto-suave);
+  max-width: 220px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+#btn-preview-quitar {
+  background: none;
+  border: none;
+  color: var(--texto-tenue);
+  font-size: 20px;
+  line-height: 1;
+  padding: 0 4px;
+}
+#btn-preview-quitar:hover {
+  color: var(--rojo);
+}
+
+/* Regla de especificidad: si el HTML tiene [hidden], no mostrar el preview */
+#preview-adjunto[hidden] {
+  display: none;
+}
+
+/* Si la imagen no tiene src, no la muestres (evita el cuadrito vacío) */
+#preview-adjunto img:not([src]),
+#preview-adjunto img[src=""] {
+  display: none;
+}
+
+/* ============================================================
+   Botón de selección de modelo (entre textarea y micrófono)
+   ============================================================ */
+#btn-modelo {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  background: var(--bg-burbuja);
+  color: var(--texto-suave);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  font-size: 12px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all .15s;
+}
+#btn-modelo:hover:not(:disabled) {
+  color: var(--texto);
+  border-color: var(--borde-activo);
+  background: var(--bg-hover);
+}
+
+/* Estado activo del micro: rojo suave cuando está "grabando" */
+#btn-micro.activo {
+  background: rgba(220, 38, 38, 0.12);
+  color: var(--rojo);
+  border-color: var(--rojo);
+}
+
+/* Botón Stop cuando está enviando */
+#btn-enviar.stop {
+  background: var(--rojo);
+  color: #fff;
+}
+#btn-enviar.stop:hover:not(:disabled) {
+  background: #ef4444;
+}

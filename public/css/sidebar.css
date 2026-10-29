@@ -1,0 +1,371 @@
+/* ============================================================
+   HADRION — sidebar.css
+   Módulo 1: sidebar completo (header, nav, lista, footer).
+   Nada del chat, composer ni topbar vive aquí.
+   ============================================================ */
+
+/* ---------- header con branding ---------- */
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 4px 4px 8px;
+  margin-bottom: 4px;
+}
+
+.sidebar-header h1 {
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: 0.09em;
+  color: #ffffff;
+  /* borde rojizo multi-direccional (funciona en Firefox y Chromium) */
+  text-shadow:
+    -1px -1px 0 #ef4444,
+     1px -1px 0 #ef4444,
+    -1px  1px 0 #ef4444,
+     1px  1px 0 #ef4444,
+     0   -1px 0 #ef4444,
+     0    1px 0 #ef4444,
+    -1px  0   0 #ef4444,
+     1px  0   0 #ef4444,
+     0    0  10px rgba(239, 68, 68, 0.35);
+  margin: 0;
+}
+
+#btn-sidebar-close {
+  background: none;
+  border: none;
+  color: #71717a;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 6px 8px;
+  border-radius: 6px;
+  line-height: 1;
+  transition: all .15s;
+}
+#btn-sidebar-close:hover {
+  color: #e5e5e7;
+  background: #18181b;
+}
+
+/* ---------- botón Nuevo chat ---------- */
+.btn-primario {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  background: #18181b;
+  color: #e5e5e7;
+  border: 1px solid #27272a;
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-size: 13.5px;
+  font-weight: 500;
+  text-align: left;
+  transition: all .15s;
+}
+.btn-primario:hover {
+  background: #1f1f23;
+  border-color: #3f3f46;
+}
+
+/* ---------- nav fijo (biblioteca / imagenes / video) ---------- */
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  font-size: 13.5px;
+  color: #a1a1aa;
+  text-align: left;
+  width: 100%;
+  transition: background .12s, color .12s;
+}
+.sidebar-item:hover:not(:disabled) {
+  background: #18181b;
+  color: #e5e5e7;
+}
+.sidebar-item:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* ---------- sección Todos ---------- */
+.sidebar-todos {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  margin-top: 6px;
+  padding-top: 10px;
+  border-top: 1px solid #1f1f23;
+}
+
+.sidebar-titulo {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #71717a;
+  padding: 6px 10px 4px;
+}
+
+#lista-chats {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #27272a transparent;
+  padding: 4px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.sidebar-chat-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  font-size: 13px;
+  color: #a1a1aa;
+  text-align: left;
+  width: 100%;
+  transition: background .12s, color .12s;
+}
+.sidebar-chat-item:hover {
+  background: #18181b;
+  color: #e5e5e7;
+}
+.sidebar-chat-item .chat-icono {
+  color: #52525b;
+  font-size: 10px;
+  line-height: 1;
+}
+.sidebar-chat-item .chat-titulo {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ---------- footer (ajustes + avatar) ---------- */
+.sidebar-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding-top: 10px;
+  border-top: 1px solid #1f1f23;
+}
+
+#btn-ajustes {
+  background: none;
+  border: none;
+  color: #a1a1aa;
+  font-size: 16px;
+  padding: 8px;
+  border-radius: 8px;
+  line-height: 1;
+  transition: all .15s;
+}
+#btn-ajustes:hover {
+  color: #e5e5e7;
+  background: #18181b;
+}
+
+#avatar-usuario {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #27272a;
+  color: #e5e5e7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 600;
+  user-select: none;
+}
+
+/* El ☰ de la topbar solo se ve cuando el sidebar está colapsado.
+   Cuando el sidebar está abierto, el ☰ del header es el que manda. */
+#sidebar:not(.colapsado) ~ #main #btn-sidebar-open {
+  display: none;
+}
+
+/* ---------- item de chat con botón de menú ---------- */
+.sidebar-chat-item {
+  display: flex;
+  align-items: center;
+  border-radius: 8px;
+  transition: background .12s;
+}
+.sidebar-chat-item:hover {
+  background: var(--bg-burbuja);
+}
+
+.chat-main-btn {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  background: none;
+  border: none;
+  color: var(--texto-suave);
+  font-size: 13px;
+  text-align: left;
+  cursor: pointer;
+  transition: color .12s;
+}
+.sidebar-chat-item:hover .chat-main-btn {
+  color: var(--texto);
+}
+
+.chat-main-btn .chat-titulo {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.chat-menu-btn {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  margin-right: 4px;
+  background: none;
+  border: none;
+  color: var(--texto-tenue);
+  font-size: 16px;
+  line-height: 1;
+  border-radius: 6px;
+  opacity: 0;
+  cursor: pointer;
+  transition: all .12s;
+}
+.sidebar-chat-item:hover .chat-menu-btn {
+  opacity: 1;
+}
+.chat-menu-btn:hover {
+  background: var(--bg-activo);
+  color: var(--texto);
+}
+
+/* ---------- item de chat con botón de menú ---------- */
+.sidebar-chat-item {
+  display: flex;
+  align-items: center;
+  border-radius: 8px;
+  transition: background .12s;
+}
+.sidebar-chat-item:hover {
+  background: var(--bg-burbuja);
+}
+
+.chat-main-btn {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  background: none;
+  border: none;
+  color: var(--texto-suave);
+  font-size: 13px;
+  text-align: left;
+  cursor: pointer;
+  transition: color .12s;
+}
+.sidebar-chat-item:hover .chat-main-btn {
+  color: var(--texto);
+}
+
+.chat-main-btn .chat-titulo {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.chat-menu-btn {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  margin-right: 4px;
+  background: none;
+  border: none;
+  color: var(--texto-tenue);
+  font-size: 16px;
+  line-height: 1;
+  border-radius: 6px;
+  opacity: 0;
+  cursor: pointer;
+  transition: all .12s;
+}
+.sidebar-chat-item:hover .chat-menu-btn {
+  opacity: 1;
+}
+.chat-menu-btn:hover {
+  background: var(--bg-activo);
+  color: var(--texto);
+}
+
+/* ============================================================
+   Menú flotante por chat (pin / download / trash)
+   ============================================================ */
+
+.chat-menu {
+  position: fixed;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 4px;
+  background: #0f0f12;
+  border: 1px solid var(--borde);
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+  animation: menu-in .12s ease-out;
+}
+@keyframes menu-in {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.chat-menu-item {
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  color: var(--texto-suave);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all .12s;
+}
+.chat-menu-item svg {
+  width: 18px;
+  height: 18px;
+}
+.chat-menu-item:hover {
+  background: var(--bg-burbuja);
+  color: var(--texto);
+}
+.chat-menu-item.peligro:hover {
+  background: rgba(220, 38, 38, 0.15);
+  color: var(--rojo);
+}

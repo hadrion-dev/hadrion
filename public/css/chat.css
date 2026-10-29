@@ -1,0 +1,123 @@
+/* ============================================================
+   HADRION — chat.css
+   Solo LAYOUT del área de mensajes y el composer.
+   Los estilos de burbujas/markdown vienen en un paso aparte.
+   ============================================================ */
+
+/* main = columna: topbar arriba, msgs al medio (flex-1), composer abajo */
+#main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+}
+
+/* zona de mensajes: scrollea y su contenido se centra si está vacío */
+#msgs {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 24px 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+#msgs-inner {
+  max-width: 780px;
+  margin: auto;              /* centra horizontal + vertical si no hay mensajes */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+#welcome {
+  text-align: center;
+  color: var(--texto-tenue);
+}
+.welcome-big {
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--texto-suave);
+  letter-spacing: -0.02em;
+}
+.welcome-sub {
+  font-size: 14.5px;
+  margin-top: 6px;
+}
+
+/* composer pegado abajo */
+#composer {
+  flex-shrink: 0;
+  border-top: 1px solid var(--borde);
+  padding: 14px 16px 18px;
+}
+
+#composer-inner {
+  max-width: 780px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+#fila-input {
+  display: flex;
+  gap: 8px;
+  align-items: flex-end;
+}
+
+/* ============================================================
+   Burbujas de mensajes
+   ============================================================ */
+
+.msg-row {
+  display: flex;
+  width: 100%;
+}
+.msg-row.user { justify-content: flex-end; }
+.msg-row.asst { justify-content: flex-start; }
+
+.msg {
+  max-width: 85%;
+  padding: 12px 16px;
+  border-radius: 14px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
+}
+.msg.user {
+  background: var(--primario);
+  color: #fff;
+  border-bottom-right-radius: 4px;
+}
+.msg.asst {
+  background: var(--bg-burbuja);
+  color: var(--texto);
+  border-bottom-left-radius: 4px;
+  border: 1px solid var(--borde);
+}
+
+/* "pensando…" pulsante */
+.msg.thinking::after {
+  content: "\25CF";
+  display: inline-block;
+  animation: pulse 1.2s ease-in-out infinite;
+  margin-left: 3px;
+  color: var(--texto-tenue);
+}
+@keyframes pulse {
+  0%, 100% { opacity: 0.3; }
+  50%      { opacity: 1; }
+}
+
+/* imagen adjunta dentro de la burbuja del usuario */
+.msg img.thumb {
+  display: block;
+  max-width: 200px;
+  max-height: 200px;
+  border-radius: 8px;
+  margin-top: 8px;
+  border: 1px solid rgba(255,255,255,0.2);
+}

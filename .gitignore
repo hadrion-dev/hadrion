@@ -148,11 +148,6 @@ vite.config.ts.timestamp-*
 # Turbo Repo
 .turbo
 
-# Excepción: permitir imágenes SOLO dentro de docs/
-!docs/
-!docs/*.png
-!docs/*.jpg
-
 # HADRION — archivos temporales que no van al repo
 *.png
 *.jpg
@@ -172,3 +167,10 @@ venv/
 # Node (por si acaso)
 node_modules/
 .next/
+
+# Excepciones (deben ir al final; la última regla que coincide gana)
+!docs/
+!docs/*.png
+!docs/*.jpg
+!docs/*.jpeg
+!docs/*.gif

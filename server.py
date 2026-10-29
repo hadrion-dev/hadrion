@@ -1,20 +1,25 @@
 #!/usr/bin/env python3
 """
-Servidor para HADRION en desarrollo:
-- Sirve archivos estáticos de public/
-- Proxies POST /api/chat -> http://192.168.1.123:30098/v1/chat/completions
-  (así el navegador nunca hace cross-origin, y el streaming se reenvía tal cual)
+HADRION — static server + /api/chat proxy for development.
+
+Serves files from public/ and proxies POST /api/chat to a local OpenAI-
+compatible backend. Doing this in the same origin avoids CORS entirely.
+
+Usage:
+    CORE_HOST=127.0.0.1 CORE_PORT=30098 python3 server.py
+    # or just:  python3 server.py  (uses 127.0.0.1:30098 by default)
 """
+
 import http.client
 import http.server
 import os
 import socketserver
 import sys
 
-CORE_HOST = "192.168.1.123"
-CORE_PORT = 30098
-PORT = 8080
-ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "public")
+CORE_HOST = os.environ.get("CORE_HOST", "127.0.0.1")
+CORE_PORT = int(os.environ.get("CORE_PORT", "30098"))
+PORT      = int(os.environ.get("PORT", "8080"))
+ROOT      = os.path.join(os.path.dirname(os.path.abspath(__file__)), "public")
 
 MAPA = {
     "/api/chat":    "/v1/chat/completions",
@@ -40,7 +45,7 @@ class Handler(http.server.SimpleHTTPRequestHandler):
     def do_POST(self):
         target = MAPA.get(self.path.split("?")[0])
         if not target:
-            self.send_error(404, "ruta desconocida")
+            self.send_error(404, "unknown route")
             return
         self._proxy(target)
 
@@ -87,6 +92,6 @@ class Server(socketserver.ThreadingTCPServer):
 
 if __name__ == "__main__":
     with Server(("0.0.0.0", PORT), Handler) as httpd:
-        print(f"[server] escuchando en 0.0.0.0:{PORT}")
+        print(f"[server] listening on 0.0.0.0:{PORT}")
         print(f"[server] proxy: /api/* -> http://{CORE_HOST}:{CORE_PORT}")
         httpd.serve_forever()

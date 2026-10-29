@@ -63,8 +63,8 @@ proxies /api/chat to the backend (avoiding CORS entirely):
     python3 server.py
     # open http://localhost:8080
 
-server.py expects a backend at 192.168.1.123:30098 — edit the CORE_HOST
-constant at the top of the file to point to yours.
+server.py connects to a backend at 127.0.0.1:30098 by default. Override it
+with `CORE_HOST` and `CORE_PORT` environment variables.
 
 Without the proxy, any static host works (npx serve public/,
 python3 -m http.server -d public/, nginx, Caddy, etc.). Just make sure
